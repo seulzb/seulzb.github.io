@@ -1,22 +1,586 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的个人主页</title>
-    <style>
-        body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
-        h1 { color: #0366d6; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人学术主页 · Tab 多维度展示</title>
+  <!-- Font Awesome 图标库 (免费) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+      background: #f4f7fc;
+      color: #1e293b;
+      padding: 2rem 1.5rem;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 2rem;
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+      padding: 2.5rem 2rem;
+      transition: all 0.2s;
+    }
+
+    /* 头部简介区 */
+    .profile-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+      border-bottom: 2px solid #eef2f6;
+      padding-bottom: 1.8rem;
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.2rem;
+      font-weight: 600;
+      color: white;
+      flex-shrink: 0;
+      box-shadow: 0 8px 16px -4px rgba(37, 99, 235, 0.25);
+    }
+
+    .profile-title h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #0b1e33;
+    }
+
+    .profile-title .subhead {
+      font-size: 1rem;
+      color: #475569;
+      margin-top: 0.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+
+    .profile-title .subhead i {
+      margin-right: 0.3rem;
+      color: #2563eb;
+      width: 1.2rem;
+    }
+
+    /* Tab 导航 */
+    .tabs-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.2rem;
+      margin-bottom: 2.2rem;
+      border-bottom: 2px solid #e9edf3;
+      padding-bottom: 0.2rem;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      padding: 0.8rem 1.8rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #64748b;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      letter-spacing: 0.3px;
+    }
+
+    .tab-btn i {
+      font-size: 1.1rem;
+      color: #64748b;
+    }
+
+    .tab-btn:hover {
+      background: #eef2f6;
+      color: #1e293b;
+    }
+
+    .tab-btn.active {
+      background: #2563eb;
+      color: white;
+      box-shadow: 0 4px 10px -2px rgba(37, 99, 235, 0.3);
+    }
+
+    .tab-btn.active i {
+      color: white;
+    }
+
+    /* 所有标签内容面板 (默认隐藏) */
+    .tab-panel {
+      display: none;
+      animation: fadeUp 0.25s ease;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeUp {
+      0% { opacity: 0.4; transform: translateY(6px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 卡片样式 & 排版 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .card-item {
+      background: #f9fafc;
+      border-radius: 1.2rem;
+      padding: 1.6rem 1.8rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      border: 1px solid #eef2f6;
+      transition: all 0.2s;
+    }
+
+    .card-item:hover {
+      border-color: #cbd5e1;
+      background: #ffffff;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.03);
+    }
+
+    .card-item h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #0f2b45;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-item h3 i {
+      color: #2563eb;
+      font-size: 1.1rem;
+      width: 1.6rem;
+    }
+
+    .card-item ul, .card-item p {
+      margin-left: 0.2rem;
+      color: #334155;
+    }
+
+    .card-item ul {
+      list-style: none;
+      padding-left: 0.2rem;
+    }
+
+    .card-item li {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+
+    .card-item li i {
+      color: #3b82f6;
+      width: 1.2rem;
+      font-size: 0.8rem;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #e6edf8;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #1e4a7a;
+      margin-right: 0.3rem;
+    }
+
+    .paper-list li, .patent-list li {
+      flex-wrap: wrap;
+    }
+
+    .paper-list .badge-db {
+      background: #2563eb;
+      color: white;
+      font-size: 0.6rem;
+      padding: 0.1rem 0.6rem;
+      border-radius: 30px;
+      margin-left: 0.3rem;
+    }
+
+    .team-upload-area {
+      margin: 1.5rem 0 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.5rem;
+      background: #f1f5f9;
+      padding: 1.2rem 1.8rem;
+      border-radius: 2rem;
+    }
+
+    .team-upload-area i {
+      font-size: 1.5rem;
+      color: #2563eb;
+    }
+
+    .team-upload-area .upload-btn {
+      background: white;
+      border: 1px solid #cbd5e1;
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .team-upload-area .upload-btn:hover {
+      background: #eef2f6;
+      border-color: #2563eb;
+    }
+
+    .team-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin-top: 1.2rem;
+    }
+
+    .team-member {
+      background: white;
+      border-radius: 2rem;
+      padding: 0.8rem 1.6rem 0.8rem 1rem;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .team-member i {
+      font-size: 1.8rem;
+      color: #2563eb;
+    }
+
+    .team-member span {
+      font-weight: 500;
+    }
+
+    .team-photo-placeholder {
+      margin-top: 1.5rem;
+      background: #f1f5f9;
+      border-radius: 1.5rem;
+      padding: 1.2rem 1.8rem;
+      border: 2px dashed #b9c8de;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .team-photo-placeholder i {
+      font-size: 2.2rem;
+      color: #3b82f6;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #2563eb;
+      color: #2563eb;
+      padding: 0.3rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .btn-outline:hover {
+      background: #2563eb;
+      color: white;
+    }
+
+    .download-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #eef2f6;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      color: #1e293b;
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-right: 0.8rem;
+      margin-top: 0.3rem;
+    }
+
+    .download-link i {
+      color: #2563eb;
+    }
+
+    .divider {
+      margin: 1.5rem 0 0.8rem;
+      border-top: 1px dashed #dce2ec;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #0b1e33;
+      margin: 1.2rem 0 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section-title i {
+      color: #2563eb;
+    }
+
+    /* 响应式 */
+    @media (max-width: 700px) {
+      .container { padding: 1.5rem 1rem; }
+      .profile-header { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+      .tab-btn { padding: 0.5rem 1rem; font-size: 0.9rem; }
+      .card-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-    <h1>👋 你好，我是 [shalimar]</h1>
-    <p>欢迎来到我的个人主页！这是我用 GitHub Pages 搭建的。</p>
-    <p>你可以在这里介绍你自己、你的项目或任何你想分享的东西。</p>
-    <ul>
-        <li>学校/公司：XXX</li>
-        <li>邮箱：your_email@example.com</li>
-        <li>GitHub: <a href="https://github.com/你的用户名">@你的用户名</a></li>
-    </ul>
+<div class="container">
+
+  <!-- 头部：姓名 + 简介 -->
+  <div class="profile-header">
+    <div class="avatar">👤</div>
+    <div class="profile-title">
+      <h1>张明 · 个人主页</h1>
+      <div class="subhead">
+        <span><i class="fas fa-envelope"></i> ming.zhang@univ.edu</span>
+        <span><i class="fas fa-map-pin"></i> 智能计算实验室 · 计算机学院</span>
+        <span><i class="fas fa-graduation-cap"></i> 博士 / 副教授</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab 导航按钮 -->
+  <div class="tabs-nav" id="tabsNav">
+    <button class="tab-btn active" data-tab="tab1"><i class="fas fa-user"></i> 个人简介</button>
+    <button class="tab-btn" data-tab="tab2"><i class="fas fa-flask"></i> 科研项目</button>
+    <button class="tab-btn" data-tab="tab3"><i class="fas fa-file-alt"></i> 学术成果</button>
+    <button class="tab-btn" data-tab="tab4"><i class="fas fa-chalkboard-teacher"></i> 教学信息</button>
+    <button class="tab-btn" data-tab="tab5"><i class="fas fa-users"></i> 团队成员</button>
+  </div>
+
+  <!-- ========= TAB 1: 个人简介 ========= -->
+  <div id="tab1" class="tab-panel active">
+    <div class="section-title"><i class="fas fa-address-card"></i> 个人简介</div>
+    <div class="card-grid">
+      <!-- 教育经历 -->
+      <div class="card-item">
+        <h3><i class="fas fa-university"></i> 教育经历</h3>
+        <ul>
+          <li><i class="fas fa-check-circle"></i> <strong>2015-2019</strong> · 清华大学 计算机科学与技术 博士</li>
+          <li><i class="fas fa-check-circle"></i> <strong>2011-2015</strong> · 北京大学 智能科学 学士 (荣誉学位)</li>
+          <li><i class="fas fa-check-circle"></i> <strong>2017-2018</strong> · MIT CSAIL 访问学者</li>
+        </ul>
+      </div>
+      <!-- 工作经历 -->
+      <div class="card-item">
+        <h3><i class="fas fa-briefcase"></i> 工作经历</h3>
+        <ul>
+          <li><i class="fas fa-building"></i> <strong>2022-至今</strong> · 南京大学 计算机学院 副教授</li>
+          <li><i class="fas fa-building"></i> <strong>2019-2022</strong> · 微软亚洲研究院 副研究员 (机器学习组)</li>
+          <li><i class="fas fa-building"></i> <strong>2018-2019</strong> · Google AI 实习研究员 (苏黎世)</li>
+        </ul>
+      </div>
+      <!-- 研究方向 (分点) -->
+      <div class="card-item">
+        <h3><i class="fas fa-microscope"></i> 研究方向</h3>
+        <ul>
+          <li><i class="fas fa-arrow-right"></i> 表示学习 & 自监督学习</li>
+          <li><i class="fas fa-arrow-right"></i> 图神经网络与知识图谱</li>
+          <li><i class="fas fa-arrow-right"></i> AI for Science (材料/生物)</li>
+          <li><i class="fas fa-arrow-right"></i> 可信机器学习 · 可解释性</li>
+        </ul>
+        <p style="margin-top: 0.6rem; color: #475569; font-size: 0.9rem;"><i class="fas fa-tag" style="color:#2563eb;"></i> 实验室主页: <a href="#" style="color:#2563eb;">ailab.nju.edu</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========= TAB 2: 科研项目 ========= -->
+  <div id="tab2" class="tab-panel">
+    <div class="section-title"><i class="fas fa-project-diagram"></i> 科研项目</div>
+    <div class="card-grid">
+      <div class="card-item">
+        <h3><i class="fas fa-star"></i> 国家自然科学基金 (面上)</h3>
+        <p><strong>“图结构数据中的自监督表示学习”</strong> (2023-2026) · 主持</p>
+        <p style="font-size:0.9rem; color:#475569;"><i class="fas fa-users"></i> 合作单位: 中科院自动化所</p>
+      </div>
+      <div class="card-item">
+        <h3><i class="fas fa-rocket"></i> 科技部重点研发计划</h3>
+        <p><strong>“大规模知识图谱构建与推理”</strong> (2021-2024) · 子课题负责人</p>
+        <p style="font-size:0.9rem; color:#475569;"><i class="fas fa-dollar-sign"></i> 总经费 680万</p>
+      </div>
+      <div class="card-item">
+        <h3><i class="fas fa-brain"></i> 企业合作项目</h3>
+        <p><strong>“基于图神经网络的药物重定位”</strong> (2023-2025) · 华为-南京大学联合实验室</p>
+        <p style="font-size:0.9rem; color:#475569;"><i class="fas fa-flask"></i> 已产出专利 2项</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========= TAB 3: 学术成果 ========= -->
+  <div id="tab3" class="tab-panel">
+    <div class="section-title"><i class="fas fa-scroll"></i> 学术成果</div>
+    <!-- 论文 (带数据库关联) -->
+    <div style="margin-bottom: 1.8rem;">
+      <h3 style="display: flex; gap:0.6rem; align-items:center; font-weight:600;"><i class="fas fa-file-pdf" style="color:#2563eb;"></i> 代表性论文 <span class="tag">DB关联</span></h3>
+      <ul class="paper-list" style="list-style:none; padding-left:0;">
+        <li style="margin-bottom:0.7rem; background:#f9fafc; padding:0.8rem 1.2rem; border-radius:1.2rem;">
+          <i class="fas fa-quote-right" style="color:#2563eb;"></i> Zhang, M. et al. "Self-supervised Graph Learning with Contrastive Transformer". <strong>NeurIPS 2024</strong> 
+          <span class="badge-db"><i class="fas fa-database"></i> DBLP</span> 
+          <span class="badge-db" style="background:#1e7e34;"><i class="fas fa-link"></i> DOI</span>
+        </li>
+        <li style="margin-bottom:0.7rem; background:#f9fafc; padding:0.8rem 1.2rem; border-radius:1.2rem;">
+          <i class="fas fa-quote-right" style="color:#2563eb;"></i> Zhang, M., Li, Y. "Knowledge Graph Completion with Relational Augmentation". <strong>ICML 2023</strong> 
+          <span class="badge-db"><i class="fas fa-database"></i> DBLP</span> 
+          <span class="badge-db" style="background:#1e7e34;"><i class="fas fa-link"></i> DOI</span>
+        </li>
+        <li style="background:#f9fafc; padding:0.8rem 1.2rem; border-radius:1.2rem;">
+          <i class="fas fa-quote-right" style="color:#2563eb;"></i> Zhang, M. et al. "Interpretable Graph Neural Networks via Concept Attribution". <strong>AAAI 2022</strong> 
+          <span class="badge-db"><i class="fas fa-database"></i> DBLP</span>
+        </li>
+      </ul>
+    </div>
+    <!-- 专利 & 获奖 -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.8rem;">
+      <div>
+        <h3><i class="fas fa-microchip"></i> 专利</h3>
+        <ul class="patent-list" style="list-style:none; padding-left:0;">
+          <li style="background:#f9fafc; padding:0.6rem 1rem; border-radius:1rem; margin-bottom:0.4rem;"><i class="fas fa-crown" style="color:#b45309;"></i> 图神经网络自适应训练方法 (ZL 2023 1 0456789.2)</li>
+          <li style="background:#f9fafc; padding:0.6rem 1rem; border-radius:1rem; margin-bottom:0.4rem;"><i class="fas fa-crown" style="color:#b45309;"></i> 基于对比学习的知识图谱补全系统 (ZL 2022 1 1234567.8)</li>
+        </ul>
+      </div>
+      <div>
+        <h3><i class="fas fa-trophy"></i> 获奖</h3>
+        <ul style="list-style:none; padding-left:0;">
+          <li style="background:#f9fafc; padding:0.6rem 1rem; border-radius:1rem; margin-bottom:0.4rem;"><i class="fas fa-medal" style="color:#f59e0b;"></i> 人工智能学会优秀博士论文提名 (2021)</li>
+          <li style="background:#f9fafc; padding:0.6rem 1rem; border-radius:1rem; margin-bottom:0.4rem;"><i class="fas fa-medal" style="color:#f59e0b;"></i> 微软学者奖学金 (2018)</li>
+          <li style="background:#f9fafc; padding:0.6rem 1rem; border-radius:1rem;"><i class="fas fa-medal" style="color:#f59e0b;"></i> 国家奖学金 (本/博)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========= TAB 4: 教学信息 ========= -->
+  <div id="tab4" class="tab-panel">
+    <div class="section-title"><i class="fas fa-chalkboard"></i> 教学信息</div>
+    <div class="card-grid">
+      <div class="card-item">
+        <h3><i class="fas fa-book-open"></i> 主讲课程</h3>
+        <ul>
+          <li><i class="fas fa-check"></i> 机器学习 (研究生) · 2023-2026</li>
+          <li><i class="fas fa-check"></i> 深度学习与神经网络 (本科) · 2022-2026</li>
+          <li><i class="fas fa-check"></i> 数据科学导论 (本科) · 2024-2026</li>
+        </ul>
+      </div>
+      <div class="card-item">
+        <h3><i class="fas fa-download"></i> 课件下载</h3>
+        <p style="margin-bottom: 0.4rem;">点击链接即可下载课件 (仅限校内访问):</p>
+        <a href="#" class="download-link"><i class="fas fa-file-pdf"></i> 机器学习_lecture1.pdf</a>
+        <a href="#" class="download-link"><i class="fas fa-file-pdf"></i> 深度学习_CNN.pdf</a>
+        <a href="#" class="download-link"><i class="fas fa-file-pdf"></i> 数据科学_绪论.pdf</a>
+        <div style="margin-top: 0.8rem;"><i class="fas fa-lock" style="color:#64748b;"></i> 课件持续更新，如需密码请联系助教</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========= TAB 5: 团队成员 ========= -->
+  <div id="tab5" class="tab-panel">
+    <div class="section-title"><i class="fas fa-users-cog"></i> 团队成员</div>
+    <!-- 团队合影上传区域 (模拟) -->
+    <div class="team-upload-area">
+      <i class="fas fa-camera-retro"></i>
+      <span style="font-weight: 500;">团队合影</span>
+      <span style="color:#475569; font-size:0.9rem;">上传合照 (支持 jpg/png)</span>
+      <button class="upload-btn" onclick="alert('模拟上传: 选择图片文件 (实际可集成云存储)')"><i class="fas fa-upload"></i> 选择照片</button>
+      <span style="font-size:0.8rem; color:#64748b;">目前共 12 位成员</span>
+    </div>
+    <!-- 展示成员列表 + 模拟合影占位 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 2rem; margin: 1rem 0 0.5rem;">
+      <div style="flex: 2; min-width: 240px;">
+        <div class="team-gallery">
+          <div class="team-member"><i class="fas fa-user-circle"></i> <span>张明 (PI)</span></div>
+          <div class="team-member"><i class="fas fa-user-circle"></i> <span>李思雨 (博士后)</span></div>
+          <div class="team-member"><i class="fas fa-user-circle"></i> <span>王瀚 (博士生)</span></div>
+          <div class="team-member"><i class="fas fa-user-circle"></i> <span>陈思 (博士生)</span></div>
+          <div class="team-member"><i class="fas fa-user-circle"></i> <span>赵一 (硕士生)</span></div>
+          <div class="team-member"><i class="fas fa-user-circle"></i> <span>周舟 (硕士生)</span></div>
+          <div class="team-member"><i class="fas fa-user-circle"></i> <span>吴双 (科研助理)</span></div>
+        </div>
+      </div>
+      <!-- 合影占位 (团队合影展示) -->
+      <div class="team-photo-placeholder" style="flex:1; min-width:200px;">
+        <i class="fas fa-image"></i>
+        <div>
+          <div style="font-weight:600;">📸 团队合影 (2026)</div>
+          <div style="font-size:0.9rem; color:#475569;">点击上传或拖拽替换</div>
+          <button class="btn-outline" style="margin-top:0.3rem;" onclick="alert('模拟上传团队合影 (实际可集成对象存储)')"><i class="fas fa-cloud-upload-alt"></i> 上传合影</button>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 1.2rem; font-size:0.9rem; color:#475569; background:#f1f5f9; padding:0.6rem 1.2rem; border-radius: 2rem;">
+      <i class="fas fa-info-circle"></i> 团队合照上传后将在本区域展示，支持 jpg/png，建议尺寸 1200x600。
+    </div>
+  </div>
+
+</div>
+
+<script>
+  (function() {
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.tab-panel');
+
+    function activateTab(tabId) {
+      // 切换按钮 active 样式
+      tabs.forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      // 切换面板
+      panels.forEach(panel => panel.classList.remove('active'));
+      const targetPanel = document.getElementById(tabId);
+      if (targetPanel) targetPanel.classList.add('active');
+    }
+
+    tabs.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const tabId = this.getAttribute('data-tab');
+        activateTab(tabId);
+      });
+    });
+
+    // 默认激活第一个 (但已由 active 类控制，保持一致性)
+    // 如果URL有hash可拓展
+  })();
+</script>
+
 </body>
 </html>
