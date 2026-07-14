@@ -196,6 +196,54 @@
     }
     /* ===== 个人概况样式结束 ===== */
 
+    /* ===== 新增：课程分类标签样式 ===== */
+    .course-category {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.15rem 0.8rem;
+      border-radius: 30px;
+      margin-left: 0.5rem;
+      background: #e6edf8;
+      color: #1e4a7a;
+    }
+    .course-category.undergrad {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+    .course-category.grad {
+      background: #fce7f3;
+      color: #9d174d;
+    }
+    /* 课程列表项的样式调整 */
+    .course-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      padding: 0.3rem 0;
+      border-bottom: 1px dashed #eef2f6;
+    }
+    .course-item:last-child {
+      border-bottom: none;
+    }
+    .course-item i {
+      color: #3b82f6;
+      width: 1.2rem;
+      font-size: 0.8rem;
+    }
+    .course-item .course-name {
+      color: #1e293b;
+    }
+    .course-item .course-tag {
+      font-size: 0.7rem;
+      padding: 0.1rem 0.6rem;
+      border-radius: 30px;
+      background: #e6edf8;
+      color: #475569;
+      margin-left: 0.4rem;
+    }
+    /* ===== 课程样式结束 ===== */
+
     .badge-db {
       background: #2563eb;
       color: white;
@@ -382,18 +430,16 @@
   <!-- ========================================================= -->
   <!-- TAB 1: 个人简介 (竖向罗列) -->
   <div id="tab1" class="tab-panel active">
-    <!-- ===== 修改：section-title 改为与其他tab一致的风格 ===== -->
     <div class="section-title"><i class="fas fa-address-card"></i> 个人简介</div>
 
-    <!-- ===== 修改：个人概况 - 新增为独立卡片，与教育经历同级 ===== -->
-    <!-- ===== 个人概况：使用 list-item 风格，与其他卡片一致 ===== -->
     <div class="vertical-list">
       <!-- 个人概况卡片 -->
       <div class="list-item">
         <h3><i class="fas fa-user-circle"></i> 个人概况</h3>
-        <!-- 去掉黑点，段落顶格排版 -->
         <div class="profile-summary">
           <p>教授，博士生导师。东南大学岩土工程研究所副所长，中国岩石力学与工程学会环境岩土工程分会第五届理事会常务理事，国际工程地质与环境协会（IAEG）会员，中国环境科学学会环境与岩土工程专业委员会委员，江苏省环境科学学会土壤及地下水修复专业委员会委员，江苏省岩土力学与工程学会第九届理事会理事，江苏省岩土力学与工程学会环境岩土工程专业委员会副主任委员兼秘书长。</p>
+          <p>曾获教育部科技进步一等奖1项、江苏省科学技术进步一等奖1项、中国岩石力学与工程学会科技进步一等奖1项、浙江省公路学会科技进步二等奖1项、吉林省公路学会科技进步二等奖1项。</p>
+          <p>在国内外权威学术期刊发表论文100余篇，出版专著3部，参编教材3部，主编团体标准1项，授权国家发明专利10余项。</p>
         </div>
       </div>
 
@@ -500,19 +546,73 @@
     </div>
   </div>
 
+  <!-- ========================================================= -->
   <!-- TAB 4: 教学信息 (竖向罗列) -->
+  <!-- ===== 修改：主讲课程按本科生和研究生分类竖向罗列 ===== -->
   <div id="tab4" class="tab-panel">
     <div class="section-title"><i class="fas fa-chalkboard"></i> 教学信息</div>
     <div class="vertical-list">
       <div class="list-item">
         <h3><i class="fas fa-book-open"></i> 主讲课程</h3>
-        <ul>
-          <li><i class="fas fa-check"></i> 本科生：<p>《土力学》、《工程地质与土力学》、《环境岩土工程》</p>
-            <p>《工程地质实习》、《地基处理》、《轻轨与地铁工程》、《基础工程》</p></li>
-          <li><i class="fas fa-check"></i> 研究生：《环境岩土工程》、《高等土工试验》</li>
-        </ul>
-      </div>
+        
+        <!-- 本科生课程 -->
+        <div style="margin-top: 0.6rem;">
+          <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.4rem;">
+            <i class="fas fa-user-graduate" style="color:#2563eb; font-size:1rem;"></i>
+            <span style="font-weight:600; color:#1e40af; font-size:1rem;">本科生课程</span>
+            <span class="course-category undergrad">本科</span>
+          </div>
+          <ul style="list-style:none; padding-left:0.2rem;">
+            <li class="course-item">
+              <i class="fas fa-book"></i>
+              <span class="course-name">土力学</span>
+            </li>
+            <li class="course-item">
+              <i class="fas fa-book"></i>
+              <span class="course-name">工程地质与土力学</span>
+            </li>
+            <li class="course-item">
+              <i class="fas fa-book"></i>
+              <span class="course-name">环境岩土工程</span>
+            </li>
+            <li class="course-item">
+              <i class="fas fa-book"></i>
+              <span class="course-name">工程地质实习</span>
+            </li>
+            <li class="course-item">
+              <i class="fas fa-book"></i>
+              <span class="course-name">地基处理</span>
+            </li>
+            <li class="course-item">
+              <i class="fas fa-book"></i>
+              <span class="course-name">轻轨与地铁工程</span>
+            </li>
+            <li class="course-item">
+              <i class="fas fa-book"></i>
+              <span class="course-name">基础工程</span>
+            </li>
+          </ul>
+        </div>
 
+        <!-- 研究生课程 -->
+        <div style="margin-top: 1rem;">
+          <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.4rem;">
+            <i class="fas fa-graduation-cap" style="color:#9d174d; font-size:1rem;"></i>
+            <span style="font-weight:600; color:#9d174d; font-size:1rem;">研究生课程</span>
+            <span class="course-category grad">研究生</span>
+          </div>
+          <ul style="list-style:none; padding-left:0.2rem;">
+            <li class="course-item">
+              <i class="fas fa-book"></i>
+              <span class="course-name">环境岩土工程</span>
+            </li>
+            <li class="course-item">
+              <i class="fas fa-book"></i>
+              <span class="course-name">高等土工试验</span>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -523,7 +623,6 @@
     <!-- ===== 团队科研新闻动态 (按时间倒序) ===== -->
     <h3 style="margin-top: 1.2rem; display: flex; gap:0.6rem; align-items:center;"><i class="fas fa-newspaper" style="color:#2563eb;"></i> 科研动态</h3>
     <div class="vertical-list" style="gap:0.4rem;">
-      
       <!-- 新闻条目1 (带图片示范，使用GitHub图片链接) -->
       <div class="list-item news-item" style="flex-direction:column; padding:1rem 1.5rem;">
         <div style="display:flex; flex-wrap:wrap; gap:0.8rem; align-items:baseline; width:100%;">
@@ -537,7 +636,7 @@
      style="width:300px; height:auto;"
      alt="Cat">
           <img class="demo-img" src="https://raw.githubusercontent.com/your-username/your-repo/main/news_neurips.jpg" alt="NeurIPS 2026 论文海报" onerror="this.style.display='none'">
-          <p style="font-size:0.85rem; color:#475569; margin-top:0.2rem;"><i class="fas fa-image"></i>... </p>
+          <p style="font-size:0.85rem; color:#475569; margin-top:0.2rem;"><i class="fas fa-image"></i> 答辩海报 (from梁佳宇)</p>
         </div>
       </div>
 
@@ -548,10 +647,12 @@
           <span style="font-weight:600; color:#0b1e33;">课题组梁佳宇同学顺利通过硕士学位论文答辩</span>
         </div>
         <div class="news-content">
-          <p>梁佳宇同学硕士学位论文的题目为《基于无人机倾斜摄影的边坡岩体结构面智能识别与质量评价研究》。</p>          
+          <p>梁佳宇同学硕士学位论文的题目为《基于无人机倾斜摄影的边坡岩体结构面智能识别与质量评价研究》。</p>
+          
           <img src="images/jiayu529.jpg"
      style="width:300px; height:auto;"
      alt="Cat">
+
         </div>
       </div>
 
@@ -562,19 +663,24 @@
           <span style="font-weight:600; color:#0b1e33;">课题组王琨戈同学顺利通过硕士学位论文答辩</span>
         </div>
         <div class="news-content">
-          <p>王琨戈同学硕士学位论文的题目为《长期服役高速公路路基劣化及其对路面结构的影响》。</p>          
-          <img src="images/kunge327.jpg"
-     style="width:300px; height:auto;"
-     alt="Cat">         
+          <p>王琨戈同学硕士学位论文的题目为《长期服役高速公路路基劣化及其对路面结构的影响》。</p>
         </div>
       </div>
 
-  <!-- 新闻条目N -->
-      
+      <!-- 新闻条目4 (纯文本) -->
+      <div class="list-item news-item" style="flex-direction:column; padding:1rem 1.5rem;">
+        <div style="display:flex; flex-wrap:wrap; gap:0.8rem; align-items:baseline; width:100%;">
+          <span class="news-date"><i class="far fa-calendar-alt"></i> 2026-05-20</span>
+          <span style="font-weight:600; color:#0b1e33;">实验室承办研讨会”</span>
+        </div>
+        <div class="news-content">
+          <p>会议将于 2026年11月 在南京召开。</p>
+        </div>
+      </div>
     </div>
 
     <div style="margin-top: 1rem; font-size:0.9rem; color:#475569; background:#f1f5f9; padding:0.6rem 1.2rem; border-radius: 2rem;">
-      <i class="fas fa-info-circle"></i> 动态按时间倒序排列，最新消息置顶。
+      <i class="fas fa-info-circle"></i> 动态按时间倒序排列，最新消息置顶。图片示例来自GitHub仓库。
     </div>
   </div>
 
