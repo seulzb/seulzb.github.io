@@ -181,7 +181,7 @@
       font-size: 0.8rem;
     }
 
-    /* ===== 新增：个人概况段落样式（顶格排版，无缩进） ===== */
+    /* ===== 个人概况段落样式（顶格排版，无缩进） ===== */
     .profile-summary {
       color: #334155;
       line-height: 1.8;
@@ -194,9 +194,8 @@
       padding: 0;
       text-indent: 0;
     }
-    /* ===== 个人概况样式结束 ===== */
 
-    /* ===== 新增：课程分类标签样式 ===== */
+    /* ===== 课程分类标签样式 ===== */
     .course-category {
       display: inline-block;
       font-size: 0.75rem;
@@ -215,7 +214,6 @@
       background: #fce7f3;
       color: #9d174d;
     }
-    /* 课程列表项的样式调整 */
     .course-item {
       display: flex;
       align-items: baseline;
@@ -234,24 +232,7 @@
     .course-item .course-name {
       color: #1e293b;
     }
-    .course-item .course-tag {
-      font-size: 0.7rem;
-      padding: 0.1rem 0.6rem;
-      border-radius: 30px;
-      background: #e6edf8;
-      color: #475569;
-      margin-left: 0.4rem;
-    }
-    /* ===== 课程样式结束 ===== */
 
-    .badge-db {
-      background: #2563eb;
-      color: white;
-      font-size: 0.6rem;
-      padding: 0.1rem 0.6rem;
-      border-radius: 30px;
-      margin-left: 0.3rem;
-    }
     .tag {
       background: #e6edf8;
       padding: 0.2rem 0.8rem;
@@ -259,6 +240,17 @@
       font-size: 0.75rem;
       font-weight: 500;
       color: #1e4a7a;
+    }
+
+    /* 红色圆点标识 (用于专著/教材清单) */
+    .red-dot {
+      display: inline-block;
+      width: 0.5rem;
+      height: 0.5rem;
+      background-color: #dc2626;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      flex-shrink: 0;
     }
 
     .download-link {
@@ -303,7 +295,6 @@
       border: 1px solid #e2e8f0;
     }
 
-    /* 团队合影上传区域 (保留) */
     .team-upload-area {
       display: flex;
       flex-wrap: wrap;
@@ -348,7 +339,6 @@
     }
     .section-title i { color: #2563eb; }
 
-    /* 图片展示 (科研动态示范) */
     .demo-img {
       max-width: 100%;
       max-height: 220px;
@@ -357,7 +347,7 @@
       margin: 0.4rem 0;
     }
 
-    /* ========== 新增：计数器样式 ========== */
+    /* 计数器样式 */
     .site-footer {
       margin-top: 2.5rem;
       padding-top: 1.5rem;
@@ -390,7 +380,6 @@
       font-size: 0.8rem;
       color: #94a3b8;
     }
-    /* ========== 计数器样式结束 ========== */
 
     @media (max-width: 700px) {
       .container { padding: 1.5rem 1rem; }
@@ -404,9 +393,8 @@
 <body>
 <div class="container">
 
-  <!-- ===== 头部：头像（使用GitHub图片） ===== -->
+  <!-- ===== 头部：头像 ===== -->
   <div class="profile-header">
-    <!-- 替换下面的 src 为你的GitHub图片链接，例如： https://raw.githubusercontent.com/你的用户名/仓库名/main/avatar.jpg -->
     <img class="avatar-img" src="https://www.whb.cn/u/cms/www/201907/170833224blb.jpg" alt="头像" onerror="this.style.display='none'; this.outerHTML='<div class=\'avatar-img\' style=\'display:flex;align-items:center;justify-content:center;background:#e2e8f0;font-size:2.8rem;\'>👤</div>'">
     <div class="profile-title">
       <h1>刘志彬 · 个人主页</h1>
@@ -428,20 +416,16 @@
   </div>
 
   <!-- ============================================================================================================================================ -->
-  <!-- TAB 1: 个人简介 (竖向罗列) -->
+  <!-- TAB 1: 个人简介 -->
   <div id="tab1" class="tab-panel active">
     <div class="section-title"><i class="fas fa-address-card"></i> 个人简介</div>
-
     <div class="vertical-list">
-      <!-- 个人概况卡片 -->
       <div class="list-item">
         <h3><i class="fas fa-user-circle"></i> 个人概况</h3>
         <div class="profile-summary">
           <p>教授，博士生导师。东南大学岩土工程研究所副所长，中国岩石力学与工程学会环境岩土工程分会第五届理事会常务理事，国际工程地质与环境协会（IAEG）会员，中国环境科学学会环境与岩土工程专业委员会委员，江苏省环境科学学会土壤及地下水修复专业委员会委员，江苏省岩土力学与工程学会第九届理事会理事，江苏省岩土力学与工程学会环境岩土工程专业委员会副主任委员兼秘书长。曾获教育部科技进步一等奖1项、江苏省科学技术进步一等奖1项、中国岩石力学与工程学会科技进步一等奖1项、浙江省公路学会科技进步二等奖1项、吉林省公路学会科技进步二等奖1项。在国内外权威学术期刊发表论文100余篇，出版专著3部，参编教材3部，主编团体标准1项，授权国家发明专利10余项。</p>
         </div>
       </div>
-
-      <!-- 教育经历卡片 -->
       <div class="list-item">
         <h3><i class="fas fa-university"></i> 教育经历</h3>
         <ul>
@@ -450,8 +434,6 @@
           <li><i class="fas fa-check-circle"></i> <strong>2001年03月-2004年07月</strong> · 南京大学，地球科学系，水文学及水资源专业，获博士学位</li>
         </ul>
       </div>
-
-      <!-- 工作经历卡片 -->
       <div class="list-item">
         <h3><i class="fas fa-briefcase"></i> 工作经历</h3>
         <ul>
@@ -463,8 +445,6 @@
           <li><i class="fas fa-building"></i> <strong>2022年05月-至今</strong> · 东南大学交通学院地下工程系，教授、博士生导师</li>
         </ul>
       </div>
-
-      <!-- 研究方向卡片 -->
       <div class="list-item">
         <h3><i class="fas fa-microscope"></i> 研究方向</h3>
         <ul>
@@ -478,8 +458,7 @@
   </div>
 
 <!-- ==================================================================================================================== -->
-  
-  <!-- TAB 2: 科研项目 (竖向罗列) -->
+  <!-- TAB 2: 科研项目 -->
   <div id="tab2" class="tab-panel">
     <div class="section-title"><i class="fas fa-project-diagram"></i> 科研项目</div>
     <div class="vertical-list">
@@ -509,126 +488,51 @@
   </div>
 
 <!-- ==================================================================================================================== -->
-
-  
-  <!-- TAB 3: 学术成果 (竖向罗列) -->
+  <!-- TAB 3: 学术成果 -->
   <div id="tab3" class="tab-panel">
     <div class="section-title"><i class="fas fa-scroll"></i> 学术成果</div>
     <div class="vertical-list">
+      <!-- 代表性论文 -->
       <div class="list-item">
         <h3><i class="fas fa-file-pdf"></i> 代表性论文 <span class="tag">DB关联</span></h3>
-        <ul>
-      
-          <ol style="padding-left:1.8rem; margin-top:0.2rem; color:#334155; line-height:1.8;">
-          <li>
-            <p><i class="fas fa-quote-right"></i> Liang JY, Liu ZB*, Meng FX, Xu CH, Tang GY, Sun YJ. InSAR and Machine Learning-Based Red Beds Highway Slope Hazard Assessment in Southern China[J]. Environmental Earth Sciences, 2025, 84: 472.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Zhang QS, Liu ZB*, et al. Quantifying damage evolution in clay-rich siliceous mudstone under wet-dry cycles based on multi-factor microstructure parameter[J]. Rock Mechanics and Rock Engineering, 2025. <a href="https://doi.org/10.1007/s00603-025-04693-4" target="_blank" rel="noopener noreferrer">https://doi.org/10.1007/s00603-025-04693-4</a> </p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Yu HT, Liu ZB*, Song M, Liu LQ, Liu Z. Soil flushing for remediation of landfill leachate-contaminated soil: a comprehensive evaluation of optimal flushing agents and influencing factors[J]. Waste Management, 2025, 200: 114771.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Yu HT, Liu ZB*, Song M, Liu LQ, Liu Z, Cao EW, Zhao XR. Evaluating the reliability of geophysical methods for investigating the migration of a hydrocarbon plume: validation by sample analysis[J]. Environmental Pollution, 2025, 372: 126032.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Bai M, Jia YG, Liu ZB*, et al. In situ remediation of groundwater in low permeability aquifers contaminated with complex contaminants using oxygen micro-nano bubble aeration[J]. Separation and Purification Technology, 2025, 36, Part 2, 132173.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Yu HT, Liu ZB*, Tang YS, Deng YF, Luo TY. Discrete element simulation of shallow soil landslides with weak interlayer due to the mechanism of unsaturated seepage[J]. Bulletin of Engineering Geology and the Environment, 2025, 84: 129.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Bai M, Jia YG, Liu ZB*, Yu HT, Gao CH, Liu Z. Degradation mechanism of organic contaminants in complex contaminated groundwater in landfill sites with oxygen micro-nano-bubbles aeration[J]. Journal of Water Process Engineering, 2025, 69: 106635.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Zhang QS, Liu ZB*, et al. Pore structure variation characteristics of a Chinese local mudstone before and after the first cycle of wetting and drying[J]. Journal of Central South University, 2025, 32: 582-596.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Ye P, Liu ZB*, Jin CL, Yu HT, Yan G, Sun YJ, Lv ZL. Preparation of phase-change material by solid waste: Characterization of PEG/steel slag composites and its applications[J]. Journal of Building Engineering, 2025, 101: 111865.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Zhang QS, Liu ZB*, Gui C, Deng YF, Luo TY. Quantifying Young's Modulus of Mudstone after Water Immersion: Insights from the Mechanical Properties of Micro-Mineral Compositions[J]. International Journal of Civil Engineering, 2024.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Jin QB, Liu ZB*, Lu LL, Zhang Y, Luo TY, Tang YS. Experimental study on the properties of CMTs-incorporated geopolymers prepared at low temperatures[J]. Journal of Southeast University (English Edition), 2024, 40(3): 295-303.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Ye P, Liu ZB*, Jin CL, et al. Preparation and characterization of novel phase-change concrete based on different porous phase-change aggregates: Comprehensive comparison of various phase change composites[J]. Construction and Building Materials, 2024, 439: 137366.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Bai M, Liu ZB*, Liu Z, He CF, Fan ZH, Yuan MX. Effect of surfactant frequently used in soil flushing on oxygen mass transfer in micro-nano-bubble aeration system[J]. Chinese Journal of Chemical Engineering, 2024, 67: 174-181.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Yu HT, Liu ZB*, Cai XC, Song M, Lu LL. Research on the detection of leakage points in vertical barrier walls using a combined method of ERT and tracer methods[J]. Environmental Science and Pollution Research, 2023, 30: 123008-123021.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Bai M, Liu ZB*, Zhan LT, Fan ZH, Yuan MX, Liu Z. Effect of chemical agents on the diffusion behavior of oxygen in groundwater under combined remediation technique of air sparging and soil flushing[J]. Water, Air, & Soil Pollution, 2023, 234: 680.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Zhang QS, Liu ZB*, Tang YS, Deng YF, Luo TY, Wang YT. Mechanical property characterization of mudstone based on nanoindentation technique combined with upscaling method[J]. Environmental Earth Sciences, 2023, 82: 485.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Lu LL, Liu ZB*, Song M, Jin QB, Zhang QS, Yang LN. Investigation of thermal conductivity and prediction model of NAPL-contaminated saturated soil[J]. ASCE, Journal of Environmental Engineering, 2023, 149(12): 04023083.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Wang YT, Liu ZB*, Jin CL, Lu LL, Bai M. Experimental study on the preparation and physical thermal performance of coral sand-based phase change material concrete composites[J]. Construction and Building Materials, 2023, 389: 131631.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Bai M, Liu ZB*, Liu Z, Yu HT, Lu LL. Removal of mixed contaminants from landfill leachate-contaminated soil by flushing with bio-surfactant: laboratory column tests[J]. Environmental Science and Pollution Research, 2023, 30: 53702-53711.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Jin QB, Liu ZB*, Wang KG, et al. Investigation of subgrade soil health of a Chinese expressway after 7 years of service[J]. International Journal of Civil Engineering, 2023, 21(1): 19-32.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Bai M, Liu ZB*, Zhan LT, Yuan MX, Yu HT. Effect of pore size distribution and colloidal fines of porous media on the transport behavior of micro-nano-bubbles[J]. Colloids and Surfaces A: Physicochemical and Engineering Aspects, 2023, 660: 130851.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Yu HT, Liu ZB*, Zhang Y, Luo TY, Tang YS, Zhang QS, Wang YT. The disintegration mechanism analysis of soft rock due to water intrusion based on discrete element method[J]. Computers & Geosciences, 2023, 171.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Yu HT, Liu ZB*, Zhang Y, Luo TY, Tang YS. Quantification analysis of geometric characteristics of micro crack network on fault rock surface[J]. Environmental Earth Sciences, 2022, 81(19): 474.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Bai M, Liu ZB*, Zhan LT, et al. A comparative study of removal efficiency of organic contaminant in landfill leachate-contaminated groundwater under micro-nano-bubble and common bubble aeration[J]. Environmental Science and Pollution Research, 2022, 29(58): 87534-87544.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Bai M, Liu ZB*, Liu Z, Fan ZH, Yuan MX. Removal efficiency of organic contaminants in landfill leachate contaminated groundwater under oxygen micro-nano-bubble aeration[J]. Environmental Science: Water Research & Technology, 2022, 8(9): 1836-1844.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Lu LL, Zhu SY, Liu ZB*. Laboratory investigation of permeability properties of cement mortar with different sand-cement ratio[J]. Advances in Cement Research, 2022, 34(7): 292-300.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Bai M, Liu ZB*, Zhang SJ, Liu F, Lei S. Drainage performance and capillary rise restraint effect of wicking geotextile[J]. Journal of Central South University, 2021, 28(10): 3260-3267.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Lu LL, Liu ZB*, Li S, Bai M, Fan ZH. Volatilization process of toluene from contaminated soil under consideration of co-existence of pore water[J]. Environmental Science and Pollution Research, 2021, 28: 68920-68929.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Bai M, Liu ZB*, Zhang SJ, Liu F, Lu LL, Zhang JP. Experimental study on the effect of fabric parameter on drainage performance of wicking geotextile[J]. Fibers and Polymers, 2021, 22: 2044-2051.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Bai M, Liu ZB*, Zhang JP, Lu LL. Prediction and experimental study of mass transfer properties of micronanobubbles[J]. Industrial & Engineering Chemistry Research, 2021, 60: 8291-8300.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Mao BY, Liu ZB*, Liu SY, et al. Investigation of relative permeability, saturation and capillary pressure relations of NAPL contaminated sands[J]. Journal of Soils and Sediments, 2020, 20: 1609-1620.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Liu ZB*, Liu SY, Cai Y, et al. Electrical resistivity characteristics of diesel oil-contaminated kaolin clay and a resistivity-based detection method[J]. Environmental Science and Pollution Research, 2015, 22(11): 8216-8223.</p>
-          </li>
-          <li>
-            <p><i class="fas fa-quote-right"></i> Liu ZB*, Liu SY, Cai Y. Engineering property test of kaolin clay contaminated by diesel oil[J]. Journal of Central South University, 2015, 22(12): 4837-4843.</p>
-          </li>
+        <ol style="padding-left:1.8rem; margin-top:0.2rem; color:#334155; line-height:1.8;">
+          <li><p><i class="fas fa-quote-right"></i> Liang JY, Liu ZB*, Meng FX, Xu CH, Tang GY, Sun YJ. InSAR and Machine Learning-Based Red Beds Highway Slope Hazard Assessment in Southern China[J]. Environmental Earth Sciences, 2025, 84: 472.</p></li>
+          <li><p><i class="fas fa-quote-right"></i> Zhang QS, Liu ZB*, et al. Quantifying damage evolution in clay-rich siliceous mudstone under wet-dry cycles based on multi-factor microstructure parameter[J]. Rock Mechanics and Rock Engineering, 2025. <a href="https://doi.org/10.1007/s00603-025-04693-4" target="_blank" rel="noopener noreferrer">https://doi.org/10.1007/s00603-025-04693-4</a></p></li>
+          <li><p><i class="fas fa-quote-right"></i> Yu HT, Liu ZB*, Song M, Liu LQ, Liu Z. Soil flushing for remediation of landfill leachate-contaminated soil: a comprehensive evaluation of optimal flushing agents and influencing factors[J]. Waste Management, 2025, 200: 114771.</p></li>
+          <li><p><i class="fas fa-quote-right"></i> Yu HT, Liu ZB*, Song M, Liu LQ, Liu Z, Cao EW, Zhao XR. Evaluating the reliability of geophysical methods for investigating the migration of a hydrocarbon plume: validation by sample analysis[J]. Environmental Pollution, 2025, 372: 126032.</p></li>
+          <li><p><i class="fas fa-quote-right"></i> Bai M, Jia YG, Liu ZB*, et al. In situ remediation of groundwater in low permeability aquifers contaminated with complex contaminants using oxygen micro-nano bubble aeration[J]. Separation and Purification Technology, 2025, 36, Part 2, 132173.</p></li>
+          <li><p><i class="fas fa-quote-right"></i> Yu HT, Liu ZB*, Tang YS, Deng YF, Luo TY. Discrete element simulation of shallow soil landslides with weak interlayer due to the mechanism of unsaturated seepage[J]. Bulletin of Engineering Geology and the Environment, 2025, 84: 129.</p></li>
+          <li><p><i class="fas fa-quote-right"></i> Bai M, Jia YG, Liu ZB*, Yu HT, Gao CH, Liu Z. Degradation mechanism of organic contaminants in complex contaminated groundwater in landfill sites with oxygen micro-nano-bubbles aeration[J]. Journal of Water Process Engineering, 2025, 69: 106635.</p></li>
+          <li><p><i class="fas fa-quote-right"></i> Zhang QS, Liu ZB*, et al. Pore structure variation characteristics of a Chinese local mudstone before and after the first cycle of wetting and drying[J]. Journal of Central South University, 2025, 32: 582-596.</p></li>
+          <li><p><i class="fas fa-quote-right"></i> Ye P, Liu ZB*, Jin CL, Yu HT, Yan G, Sun YJ, Lv ZL. Preparation of phase-change material by solid waste: Characterization of PEG/steel slag composites and its applications[J]. Journal of Building Engineering, 2025, 101: 111865.</p></li>
+          <li><p><i class="fas fa-quote-right"></i> Zhang QS, Liu ZB*, Gui C, Deng YF, Luo TY. Quantifying Young's Modulus of Mudstone after Water Immersion: Insights from the Mechanical Properties of Micro-Mineral Compositions[J]. International Journal of Civil Engineering, 2024.</p></li>
         </ol>
         <p style="margin-top:0.4rem; font-size:0.85rem; color:#94a3b8;"><i class="fas fa-asterisk" style="color:#dc2626; font-size:0.6rem;"></i> * 通讯作者</p>     
-          
+      </div>
+
+      <!-- ===== 学术专著（红色圆点标识） ===== -->
+      <div class="list-item">
+        <h3><i class="fas fa-book"></i> 学术专著</h3>
+        <ul>
+          <li><span class="red-dot"></span> 刘志彬, 刘松玉. 污染场地曝气修复技术. 科学出版社, 2020.</li>
+          <li><span class="red-dot"></span> 刘志彬, 方伟, 刘松玉. 环境岩土工程理论与实践. 中国建筑工业出版社, 2018.</li>
+          <li><span class="red-dot"></span> 刘志彬, 杜延军, 陈志龙. 工业污染场地固化稳定化修复技术. 中国环境出版集团, 2016.</li>
         </ul>
       </div>
 
-      
+      <!-- ===== 教材（红色圆点标识） ===== -->
+      <div class="list-item">
+        <h3><i class="fas fa-graduation-cap"></i> 教材</h3>
+        <ul>
+          <li><span class="red-dot"></span> 刘志彬 (参编). 土力学 (第2版). 人民交通出版社, 2022.</li>
+          <li><span class="red-dot"></span> 刘志彬, 张云龙 (参编). 环境岩土工程概论. 东南大学出版社, 2020.</li>
+          <li><span class="red-dot"></span> 刘志彬 (参编). 地基处理与加固. 中国水利水电出版社, 2017.</li>
+        </ul>
+      </div>
+
+      <!-- 专利 -->
       <div class="list-item">
         <h3><i class="fas fa-microchip"></i> 专利</h3>
-   
         <ul>
           <li><i class="fas fa-crown" style="color:#b45309;"></i> 1. 鹿亮亮, 刘志彬, 白梅, 张锦鹏, 刘朱. 一种热脱附和曝气修复过程的微观观测系统及方法, 申请号CN202011060530.7.</li>
           <li><i class="fas fa-crown" style="color:#b45309;"></i> 2. 白梅, 刘志彬, 张锦鹏, 刘朱. 一种自动测量液面高度的曝气系统及液面高度测量方法, 申请号CN202010862304.4.</li>
@@ -642,7 +546,7 @@
         </ul>
       </div>
 
-      
+      <!-- 获奖 -->
       <div class="list-item">
         <h3><i class="fas fa-trophy"></i> 获奖</h3>
         <ul>
@@ -661,15 +565,12 @@
   </div>
 
   <!-- ============================================================================================================================================ -->
-  <!-- TAB 4: 教学信息 (竖向罗列) -->
-  <!-- ===== 修改：主讲课程按本科生和研究生分类竖向罗列 ===== -->
+  <!-- TAB 4: 教学信息 -->
   <div id="tab4" class="tab-panel">
     <div class="section-title"><i class="fas fa-chalkboard"></i> 教学信息</div>
     <div class="vertical-list">
       <div class="list-item">
         <h3><i class="fas fa-book-open"></i> 主讲课程</h3>
-        
-        <!-- 本科生课程 -->
         <div style="margin-top: 0.6rem;">
           <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.4rem;">
             <i class="fas fa-user-graduate" style="color:#2563eb; font-size:1rem;"></i>
@@ -677,38 +578,15 @@
             <span class="course-category undergrad">本科</span>
           </div>
           <ul style="list-style:none; padding-left:0.2rem;">
-            <li class="course-item">
-              <i class="fas fa-book"></i>
-              <span class="course-name">土力学</span>
-            </li>
-            <li class="course-item">
-              <i class="fas fa-book"></i>
-              <span class="course-name">工程地质与土力学</span>
-            </li>
-            <li class="course-item">
-              <i class="fas fa-book"></i>
-              <span class="course-name">环境岩土工程</span>
-            </li>
-            <li class="course-item">
-              <i class="fas fa-book"></i>
-              <span class="course-name">工程地质实习</span>
-            </li>
-            <li class="course-item">
-              <i class="fas fa-book"></i>
-              <span class="course-name">地基处理</span>
-            </li>
-            <li class="course-item">
-              <i class="fas fa-book"></i>
-              <span class="course-name">轻轨与地铁工程</span>
-            </li>
-            <li class="course-item">
-              <i class="fas fa-book"></i>
-              <span class="course-name">基础工程</span>
-            </li>
+            <li class="course-item"><i class="fas fa-book"></i><span class="course-name">土力学</span></li>
+            <li class="course-item"><i class="fas fa-book"></i><span class="course-name">工程地质与土力学</span></li>
+            <li class="course-item"><i class="fas fa-book"></i><span class="course-name">环境岩土工程</span></li>
+            <li class="course-item"><i class="fas fa-book"></i><span class="course-name">工程地质实习</span></li>
+            <li class="course-item"><i class="fas fa-book"></i><span class="course-name">地基处理</span></li>
+            <li class="course-item"><i class="fas fa-book"></i><span class="course-name">轻轨与地铁工程</span></li>
+            <li class="course-item"><i class="fas fa-book"></i><span class="course-name">基础工程</span></li>
           </ul>
         </div>
-
-        <!-- 研究生课程 -->
         <div style="margin-top: 1rem;">
           <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.4rem;">
             <i class="fas fa-graduation-cap" style="color:#9d174d; font-size:1rem;"></i>
@@ -716,14 +594,8 @@
             <span class="course-category grad">研究生</span>
           </div>
           <ul style="list-style:none; padding-left:0.2rem;">
-            <li class="course-item">
-              <i class="fas fa-book"></i>
-              <span class="course-name">环境岩土工程</span>
-            </li>
-            <li class="course-item">
-              <i class="fas fa-book"></i>
-              <span class="course-name">高等土工试验</span>
-            </li>
+            <li class="course-item"><i class="fas fa-book"></i><span class="course-name">环境岩土工程</span></li>
+            <li class="course-item"><i class="fas fa-book"></i><span class="course-name">高等土工试验</span></li>
           </ul>
         </div>
       </div>
@@ -731,16 +603,11 @@
   </div>
 
   <!-- ============================================================================================================================================ -->
-
-  
-  <!-- TAB 5: 团队动态 (竖向罗列 + 新闻时间线) -->
+  <!-- TAB 5: 团队动态 -->
   <div id="tab5" class="tab-panel">
     <div class="section-title"><i class="fas fa-users-cog"></i> 团队动态</div>
-  
-    <!-- ===== 团队科研新闻动态 (按时间倒序) ===== -->
     <h3 style="margin-top: 1.2rem; display: flex; gap:0.6rem; align-items:center;"><i class="fas fa-newspaper" style="color:#2563eb;"></i> 科研动态</h3>
     <div class="vertical-list" style="gap:0.4rem;">
-      <!-- 新闻条目1 (带图片示范，使用GitHub图片链接) -->
       <div class="list-item news-item" style="flex-direction:column; padding:1rem 1.5rem;">
         <div style="display:flex; flex-wrap:wrap; gap:0.8rem; align-items:baseline; width:100%;">
           <span class="news-date"><i class="far fa-calendar-alt"></i> 2026-07-01</span>
@@ -748,16 +615,11 @@
         </div>
         <div class="news-content">
           <p>祝贺课题组梁佳宇、王琨戈两位研究生获得硕士学位，奔赴新的工作岗位，祝未来前程似锦，大展宏图。</p>
-          <!-- 使用GitHub图片链接示范 (替换为你自己的图片) -->
-          <img src="images/piano.jpg"
-     style="width:300px; height:auto;"
-     alt="Cat">
+          <img src="images/piano.jpg" style="width:300px; height:auto;" alt="Cat">
           <img class="demo-img" src="https://raw.githubusercontent.com/your-username/your-repo/main/news_neurips.jpg" alt="NeurIPS 2026 论文海报" onerror="this.style.display='none'">
           <p style="font-size:0.85rem; color:#475569; margin-top:0.2rem;"><i class="fas fa-image"></i> 答辩海报 (from梁佳宇)</p>
         </div>
       </div>
-
-      <!-- 新闻条目2 -->
       <div class="list-item news-item" style="flex-direction:column; padding:1rem 1.5rem;">
         <div style="display:flex; flex-wrap:wrap; gap:0.8rem; align-items:baseline; width:100%;">
           <span class="news-date"><i class="far fa-calendar-alt"></i> 2026-05-29</span>
@@ -765,15 +627,9 @@
         </div>
         <div class="news-content">
           <p>梁佳宇同学硕士学位论文的题目为《基于无人机倾斜摄影的边坡岩体结构面智能识别与质量评价研究》。</p>
-          
-          <img src="images/jiayu529.jpg"
-     style="width:300px; height:auto;"
-     alt="Cat">
-
+          <img src="images/jiayu529.jpg" style="width:300px; height:auto;" alt="Cat">
         </div>
       </div>
-
-      <!-- 新闻条目3 -->
       <div class="list-item news-item" style="flex-direction:column; padding:1rem 1.5rem;">
         <div style="display:flex; flex-wrap:wrap; gap:0.8rem; align-items:baseline; width:100%;">
           <span class="news-date"><i class="far fa-calendar-alt"></i> 2026-03-27</span>
@@ -783,27 +639,22 @@
           <p>王琨戈同学硕士学位论文的题目为《长期服役高速公路路基劣化及其对路面结构的影响》。</p>
         </div>
       </div>
-
-      <!-- 新闻条目4 (纯文本) -->
       <div class="list-item news-item" style="flex-direction:column; padding:1rem 1.5rem;">
         <div style="display:flex; flex-wrap:wrap; gap:0.8rem; align-items:baseline; width:100%;">
           <span class="news-date"><i class="far fa-calendar-alt"></i> 2026-05-20</span>
-          <span style="font-weight:600; color:#0b1e33;">实验室承办研讨会”</span>
+          <span style="font-weight:600; color:#0b1e33;">实验室承办研讨会</span>
         </div>
         <div class="news-content">
           <p>会议将于 2026年11月 在南京召开。</p>
         </div>
       </div>
     </div>
-
     <div style="margin-top: 1rem; font-size:0.9rem; color:#475569; background:#f1f5f9; padding:0.6rem 1.2rem; border-radius: 2rem;">
       <i class="fas fa-info-circle"></i> 动态按时间倒序排列，最新消息置顶。图片示例来自GitHub仓库。
     </div>
   </div>
 
-  <!-- ========================================================= -->
-  <!-- ===== 新增：网站底部计数器 ===== -->
-  <!-- 计数器说明：使用 localStorage 存储访问次数，每次页面加载时自动加1 -->
+  <!-- ===== 网站底部计数器 ===== -->
   <footer class="site-footer">
     <div class="counter-box">
       <i class="fas fa-chart-line"></i>
@@ -815,7 +666,6 @@
       <i class="fas fa-info-circle"></i> 数据保存在您的浏览器中，每次访问自动计数
     </div>
   </footer>
-  <!-- ===== 计数器代码结束 ===== -->
 
 </div>
 
@@ -828,7 +678,6 @@
       tabs.forEach(btn => btn.classList.remove('active'));
       const activeBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
       if (activeBtn) activeBtn.classList.add('active');
-
       panels.forEach(panel => panel.classList.remove('active'));
       const targetPanel = document.getElementById(tabId);
       if (targetPanel) targetPanel.classList.add('active');
@@ -840,55 +689,26 @@
         activateTab(tabId);
       });
     });
-
-    // 默认激活第一个 (由active类控制)
   })();
 </script>
 
-<!-- ========================================================= -->
-<!-- ===== 新增：访问计数器 JavaScript 代码 ===== -->
-<!-- 功能说明：
-     1. 使用 localStorage 存储访问次数，键名为 'websiteVisitCount'
-     2. 每次页面加载时，读取当前计数，加1后存回 localStorage
-     3. 同时更新页面上的显示数字
-     4. 如果 localStorage 不可用（如隐私模式），则显示提示信息
--->
 <script>
   (function() {
-    // 获取显示计数的元素
     const counterEl = document.getElementById('visitCounter');
     if (!counterEl) return;
-
-    // 计数器存储键名
     const STORAGE_KEY = 'websiteVisitCount';
-
     try {
-      // 尝试从 localStorage 读取当前访问次数
       let count = parseInt(localStorage.getItem(STORAGE_KEY), 10);
-      
-      // 如果读取失败或不是有效数字，初始化为0
-      if (isNaN(count) || count < 0) {
-        count = 0;
-      }
-
-      // 访问次数加1（每次页面加载即视为一次新访问）
+      if (isNaN(count) || count < 0) count = 0;
       count += 1;
-
-      // 将新计数保存回 localStorage
       localStorage.setItem(STORAGE_KEY, String(count));
-
-      // 更新页面显示
       counterEl.textContent = count;
-
     } catch (e) {
-      // 如果 localStorage 不可用（如 Safari 隐私模式），显示友好提示
       counterEl.textContent = '?';
-      // 在控制台输出错误信息（方便调试）
       console.warn('访问计数器：无法使用 localStorage，请检查浏览器设置。', e);
     }
   })();
 </script>
-<!-- ===== 计数器 JavaScript 代码结束 ===== -->
 
 </body>
 </html>
