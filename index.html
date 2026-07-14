@@ -294,6 +294,41 @@
       margin: 0.4rem 0;
     }
 
+    /* ========== 新增：计数器样式 ========== */
+    .site-footer {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 2px solid #eef2f6;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+    .site-footer .counter-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #f1f5f9;
+      padding: 0.5rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 500;
+    }
+    .site-footer .counter-box i {
+      color: #2563eb;
+      font-size: 1.1rem;
+    }
+    .site-footer .counter-box .count-num {
+      color: #0b1e33;
+      font-weight: 700;
+      font-size: 1.1rem;
+      min-width: 2rem;
+    }
+    .site-footer .counter-desc {
+      margin-top: 0.3rem;
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+    /* ========== 计数器样式结束 ========== */
+
     @media (max-width: 700px) {
       .container { padding: 1.5rem 1rem; }
       .profile-header { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
@@ -518,6 +553,22 @@
     </div>
   </div>
 
+  <!-- ========================================================= -->
+  <!-- ===== 新增：网站底部计数器 ===== -->
+  <!-- 计数器说明：使用 localStorage 存储访问次数，每次页面加载时自动加1 -->
+  <footer class="site-footer">
+    <div class="counter-box">
+      <i class="fas fa-chart-line"></i>
+      <span>本站总访问量：</span>
+      <span class="count-num" id="visitCounter">0</span>
+      <span>次</span>
+    </div>
+    <div class="counter-desc">
+      <i class="fas fa-info-circle"></i> 数据保存在您的浏览器中，每次访问自动计数
+    </div>
+  </footer>
+  <!-- ===== 计数器代码结束 ===== -->
+
 </div>
 
 <script>
@@ -545,6 +596,51 @@
     // 默认激活第一个 (由active类控制)
   })();
 </script>
+
+<!-- ========================================================= -->
+<!-- ===== 新增：访问计数器 JavaScript 代码 ===== -->
+<!-- 功能说明：
+     1. 使用 localStorage 存储访问次数，键名为 'websiteVisitCount'
+     2. 每次页面加载时，读取当前计数，加1后存回 localStorage
+     3. 同时更新页面上的显示数字
+     4. 如果 localStorage 不可用（如隐私模式），则显示提示信息
+-->
+<script>
+  (function() {
+    // 获取显示计数的元素
+    const counterEl = document.getElementById('visitCounter');
+    if (!counterEl) return;
+
+    // 计数器存储键名
+    const STORAGE_KEY = 'websiteVisitCount';
+
+    try {
+      // 尝试从 localStorage 读取当前访问次数
+      let count = parseInt(localStorage.getItem(STORAGE_KEY), 10);
+      
+      // 如果读取失败或不是有效数字，初始化为0
+      if (isNaN(count) || count < 0) {
+        count = 0;
+      }
+
+      // 访问次数加1（每次页面加载即视为一次新访问）
+      count += 1;
+
+      // 将新计数保存回 localStorage
+      localStorage.setItem(STORAGE_KEY, String(count));
+
+      // 更新页面显示
+      counterEl.textContent = count;
+
+    } catch (e) {
+      // 如果 localStorage 不可用（如 Safari 隐私模式），显示友好提示
+      counterEl.textContent = '?';
+      // 在控制台输出错误信息（方便调试）
+      console.warn('访问计数器：无法使用 localStorage，请检查浏览器设置。', e);
+    }
+  })();
+</script>
+<!-- ===== 计数器 JavaScript 代码结束 ===== -->
 
 </body>
 </html>
